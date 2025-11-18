@@ -18,3 +18,11 @@ def main():
     print("1. Пользовательский ввод")
     print("2. Поиск на веб-странице (по URL)")
     print("3. Поиск в локальном файле")
+
+    try:
+        choice = input("Ваш выбор: ").strip()
+        
+        if choice == "1":
+            text = input("Введите текст: ")
+            times = find_times_in_text(text)
+            print(f"Найдено {len(times)} совпадений: {times}")
