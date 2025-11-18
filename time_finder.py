@@ -38,12 +38,12 @@ def main():
                 if times:
                     print("Примеры:", times[:5])
             except requests.RequestException as e:
-                print(f"❌ Ошибка при загрузке страницы: {e}")
+                print(f"Ошибка при загрузке страницы: {e}")
 
         elif choice == "3":
             filename = input("Введите путь к файлу: ").strip()
             if not os.path.exists(filename):
-                print(f"❌ Файл не найден: {filename}")
+                print(f"Файл не найден: {filename}")
                 return
             try:
                 with open(filename, 'r', encoding='utf-8') as f:
@@ -53,4 +53,4 @@ def main():
                 if times:
                     print("Примеры:", times[:5])
             except Exception as e:
-                print(f"❌ Ошибка чтения файла: {e}")
+                print(f"Ошибка чтения файла: {e}")
