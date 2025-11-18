@@ -21,7 +21,7 @@ def main():
 
     try:
         choice = input("Ваш выбор: ").strip()
-        
+
         if choice == "1":
             text = input("Введите текст: ")
             times = find_times_in_text(text)
@@ -46,7 +46,7 @@ def main():
                 print(f"Файл не найден: {filename}")
                 return
             try:
-                with open(filename, 'r', encoding='utf-8') as f:
+                with open(filename, "r", encoding="utf-8") as f:
                     text = f.read()
                 times = find_times_in_text(text)
                 print(f"Найдено {len(times)} совпадений в файле.")
@@ -54,3 +54,15 @@ def main():
                     print("Примеры:", times[:5])
             except Exception as e:
                 print(f"Ошибка чтения файла: {e}")
+
+        else:
+            print("❗ Неверный выбор.")
+
+    except KeyboardInterrupt:
+        print("\n👋 Программа завершена.")
+    except Exception as e:
+        print(f"💥 Неизвестная ошибка: {e}")
+
+
+if __name__ == "__main__":
+    main()
