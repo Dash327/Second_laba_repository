@@ -16,8 +16,7 @@ def main():
     print("Поиск времени в формате ЧЧ:ММ:СС")
     print("Выберите режим:")
     print("1. Пользовательский ввод")
-    print("2. Поиск на веб-странице (по URL)")
-    print("3. Поиск в локальном файле")
+    print("2. Поиск в локальном файле")
 
     try:
         choice = input("Ваш выбор: ").strip()
@@ -28,19 +27,6 @@ def main():
             print(f"Найдено {len(times)} совпадений: {times}")
 
         elif choice == "2":
-            url = input("Введите URL: ").strip()
-            print(f"Загрузка страницы: {url}")
-            try:
-                response = requests.get(url, timeout=10)
-                response.raise_for_status()
-                times = find_times_in_text(response.text)
-                print(f"Найдено {len(times)} совпадений на странице.")
-                if times:
-                    print("Примеры:", times[:5])
-            except requests.RequestException as e:
-                print(f"Ошибка при загрузке страницы: {e}")
-
-        elif choice == "3":
             filename = input("Введите путь к файлу: ").strip()
             if not os.path.exists(filename):
                 print(f"Файл не найден: {filename}")
@@ -59,9 +45,9 @@ def main():
             print("❗ Неверный выбор.")
 
     except KeyboardInterrupt:
-        print("\n👋 Программа завершена.")
+        print("\nПрограмма завершена.")
     except Exception as e:
-        print(f"💥 Неизвестная ошибка: {e}")
+        print(f"Неизвестная ошибка: {e}")
 
 
 if __name__ == "__main__":
