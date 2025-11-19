@@ -36,3 +36,19 @@ class TestTimeRegex(unittest.TestCase):
         self.assertIsNone(TIME_REGEX.fullmatch("9:05:03"))
         self.assertIsNone(TIME_REGEX.fullmatch("09:5:03"))
         self.assertIsNone(TIME_REGEX.fullmatch("09:05:3"))
+
+    def test_surrounding_text(self):
+        self.assertEqual(TIME_REGEX.findall("x12:34:56y"), [])
+        self.assertEqual(TIME_REGEX.findall("12:34:56."), ["12:34:56"])
+
+    def test_multiple_spaces_colons(self):
+        self.assertIsNone(TIME_REGEX.fullmatch("12 : 34 : 56"))
+        self.assertIsNone(TIME_REGEX.fullmatch("12:34:56 "))
+
+    def test_unicode_and_non_ascii(self):
+        text = "Старт в 08:15:30 утра."
+        self.assertEqual(TIME_REGEX.findall(text), ["08:15:30"])
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
