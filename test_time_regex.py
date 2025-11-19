@@ -26,3 +26,13 @@ class TestTimeRegex(unittest.TestCase):
     def test_no_false_positives(self):
         text = "192.168.001.001 содержит 001, но не время."
         self.assertEqual(TIME_REGEX.findall(text), [])
+
+    def test_edge_cases_hours(self):
+        self.assertTrue(TIME_REGEX.fullmatch("00:00:00"))
+        self.assertTrue(TIME_REGEX.fullmatch("23:59:59"))
+        self.assertIsNone(TIME_REGEX.fullmatch("24:00:00"))
+
+    def test_leading_zero_requirement(self):
+        self.assertIsNone(TIME_REGEX.fullmatch("9:05:03"))
+        self.assertIsNone(TIME_REGEX.fullmatch("09:5:03"))
+        self.assertIsNone(TIME_REGEX.fullmatch("09:05:3"))
